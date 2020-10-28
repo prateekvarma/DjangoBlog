@@ -22,4 +22,4 @@ class Meta:
     ordering = ('-publish',)
 
 def __str__(self):
-    return self.titlee
+    return self.title

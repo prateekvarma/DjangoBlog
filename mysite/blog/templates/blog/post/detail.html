@@ -15,4 +15,22 @@
     </a>
   </p>
 
+  <!-- The {% with %} tag allows you to assign a value to a new variable -->
+  {% with comments.count as total_comments %} <h2>
+       {{ total_comments }} comment{{ total_comments|pluralize }}
+     </h2>
+  {% endwith %}
+
+  <!-- Display list of comments -->
+  {% for comment in comments %}
+  <div class="comment">
+    <p class="info">
+    Comment {{ forloop.counter }} by {{ comment.name }} {{ comment.created }}
+    </p>
+    {{ comment.body|linebreaks }}
+  </div>
+    {% empty %}
+    <p>There are no comments yet.</p>
+  {% endfor %}
+
 {% endblock %}

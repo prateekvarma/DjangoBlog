@@ -15,7 +15,7 @@
     </a>
   </p>
 
-  <!-- The {% with %} tag allows you to assign a value to a new variable -->
+  <!-- The "with" tag allows you to assign a value to a new variable -->
   {% with comments.count as total_comments %} <h2>
        {{ total_comments }} comment{{ total_comments|pluralize }}
      </h2>
@@ -32,5 +32,19 @@
     {% empty %}
     <p>There are no comments yet.</p>
   {% endfor %}
+
+  <!-- Display new comment, or display comment form -->
+  {% if new_comment %}
+    <h2>Your comment has been added.</h2>
+  {% else %}
+    <h2>Add a new comment</h2>
+      <form method="post">
+        {{ comment_form.as_p }}
+        {% csrf_token %}
+        <p>
+          <input type="submit" value="Add comment">
+        </p>
+      </form>
+  {% endif %}
 
 {% endblock %}

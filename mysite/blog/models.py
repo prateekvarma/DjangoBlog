@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
+from taggit.managers import TaggableManager
 
 #Adding a custom manager to retrieve model data
 class PublishedManager(models.Manager):
@@ -28,6 +29,8 @@ class Post(models.Model):
     objects = models.Manager() #the default Manager
     published = PublishedManager() #our custom manager
     #custom manager code ends
+    #Below code for TaggableManager
+    tags = TaggableManager()
 
     #adding canonical URLs
     def get_absolute_url(self):
@@ -58,4 +61,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'Comment by {self.name} on {self.post}'
-         
